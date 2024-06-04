@@ -801,8 +801,12 @@ class MainWindow(QtWidgets.QMainWindow):
             colors='nocolor'
         elif styles.dark_style(syntax_style):
             colors='linux'
+            self.active_frontend._execute("from IPython.core.ultratb import VerboseTB\n"+
+                                      "VerboseTB._tb_highlight = 'bg:ansigreen'", True)
         else:
             colors='lightbg'
+            self.active_frontend._execute("from IPython.core.ultratb import VerboseTB\n"+
+                                      "VerboseTB._tb_highlight = 'bg:ansiblue'", True)
         self.active_frontend.syntax_style = syntax_style
         style_sheet = styles.sheet_from_template(syntax_style, colors)
         self.active_frontend.style_sheet = style_sheet
