@@ -144,6 +144,7 @@ class AnsiCodeProcessor(object):
 
                 elif g0.startswith(']'):
                     # Case 2: OSC code.
+                    params = [ param for param in groups[1].split(';') if param ]
                     self.set_osc_code(params)
 
         raw = string[start:]
